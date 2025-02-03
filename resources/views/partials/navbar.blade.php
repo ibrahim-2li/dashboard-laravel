@@ -73,16 +73,15 @@
             <img src="{{asset('skydash/images/faces/face28.jpg')}}" alt="profile"/>
           </a>
           <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-            <a class="dropdown-item">
-              <i class="ti-settings text-primary"></i>
-              Settings
+            <a class="dropdown-item" href="{{__('profile')}}">
+                <i class="icon-head menu-icon text-primary"></i>
+                 Profile
             </a>
             <a class="dropdown-item">
               <i class="ti-power-off text-primary"></i>
               <form method="POST" action="{{ route('logout') }}">
                 @csrf
-
-                <button style="border:0;backgound-color:transparent;" class="" type="submit">
+                <button style="border:0; background-color:white;" type="submit">
                     {{ __('Log Out') }}
                 </button>
             </form>
