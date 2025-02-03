@@ -11,12 +11,15 @@
         </div>
         <p class="settings-heading mt-2">HEADER SKINS</p>
         <div class="color-tiles mx-0 px-4">
-            <div class="tiles success"></div>
-            <div class="tiles warning"></div>
-            <div class="tiles danger"></div>
-            <div class="tiles info"></div>
-            <div class="tiles dark"></div>
-            <div class="tiles default"></div>
+            <div class="tiles primary" data-theme="navbar-primary"></div>
+            <div class="tiles success" data-theme="navbar-success"></div>
+            <div class="tiles warning" data-theme="navbar-warning"></div>
+            <div class="tiles danger" data-theme="navbar-danger"></div>
+            <div class="tiles light" data-theme="navbar-light"></div>
+            <div class="tiles dark" data-theme="navbar-dark"></div>
+            <div class="tiles info" data-theme="navbar-info"></div>
+            <div class="tiles pink" data-theme="navbar-pink"></div>
+            <div class="tiles default" data-theme=""></div>
         </div>
     </div>
 </div>
@@ -39,8 +42,7 @@
                 <form class="form w-100">
                     <div class="form-group d-flex">
                         <input type="text" class="form-control todo-list-input" placeholder="Add To-do">
-                        <button type="submit" class="add btn btn-primary todo-list-add-btn"
-                            id="add-task">Add</button>
+                        <button type="submit" class="add btn btn-primary todo-list-add-btn" id="add-task">Add</button>
                     </div>
                 </form>
             </div>
@@ -115,8 +117,7 @@
         <div class="tab-pane fade" id="chats-section" role="tabpanel" aria-labelledby="chats-section">
             <div class="d-flex align-items-center justify-content-between border-bottom">
                 <p class="settings-heading border-top-0 mb-3 pl-3 pt-0 border-bottom-0 pb-0">Friends</p>
-                <small
-                    class="settings-heading border-top-0 mb-3 pt-0 border-bottom-0 pb-0 pr-3 font-weight-normal">See
+                <small class="settings-heading border-top-0 mb-3 pt-0 border-bottom-0 pb-0 pr-3 font-weight-normal">See
                     All</small>
             </div>
             <ul class="chat-list">

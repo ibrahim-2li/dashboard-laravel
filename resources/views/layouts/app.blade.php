@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-    <title>@yield('title', 'Dashboard')</title>
+<title>@yield('title', 'Dashboard')</title>
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -29,23 +30,23 @@
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
             <!-- partial:partials/_settings-panel.html -->
-        @include('partials.settings')
+            @include('partials.settings')
             <!-- partial -->
             <!-- partial:partials/_sidebar.html -->
             @include('partials.sidebar')
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-                @yield('main-content')
-            <!-- content-wrapper ends -->
-            <!-- partial:partials/_footer.html -->
+                    @yield('main-content')
+                    <!-- content-wrapper ends -->
+                    <!-- partial:partials/_footer.html -->
                 </div>
+            </div>
         </div>
     </div>
-</div>
-<!-- partial -->
-<!-- main-panel ends -->
-</div>
+    <!-- partial -->
+    <!-- main-panel ends -->
+    </div>
     <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->
