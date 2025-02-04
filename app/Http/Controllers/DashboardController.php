@@ -1,21 +1,17 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Services\WeatherService;
-use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Http;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        $weather = WeatherService::getWeather('Riyadh', 'SA');
+        $response = Http::get(route('weather.get'));
 
-        if (isset($weather['error'])) {
-            return view('dashboard.index', ['weatherError' => $weather['error']]);
-        }
+        $weatherData = $response->successful() ? $response->json() : null;
 
-        return view('dashboard.index', compact('weather'));
+        return view('dashboard', compact('weatherData'));
     }
 }

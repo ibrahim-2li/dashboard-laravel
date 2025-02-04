@@ -36,25 +36,21 @@
             <div class="card tale-bg">
                 <div class="card-people mt-auto">
                     <img src="{{ asset('skydash/images/dashboard/people.svg') }}" alt="people">
+
                     <div class="weather-info">
                         <div class="d-flex">
-                            <div>
-                                @if(isset($weatherError))
-                                <h2 class="mb-0 font-weight-normal text-danger">{{ $weatherError }}</h2>
-                            @elseif(isset($weather) && isset($weather['main']['temp']))
-                                <h2 class="mb-0 font-weight-normal">
-                                    <i class="icon-{{ strtolower($weather['weather'][0]['main'] ?? '') }} mr-2"></i>
-                                    {{ round($weather['main']['temp']) }}<sup>°C</sup>
-                                </h2>
-                            @else
-                                <h2 class="mb-0 font-weight-normal">Weather Unavailable</h2>
-                            @endif
+                            <h2 class="mt-3 font-weight-normal"><i class="icon-sun mr-2">
+                            </i></h2>
 
+                            <div id="weather-widget">
+                                <h2 class="mb-0 mr-3 font-weight-normal">Loading...</h2>
                             </div>
-                            <div class="ml-2">
-                                <h4 class="location font-weight-normal">Riyadh</h4>
-                                <h6 class="font-weight-normal">Saudi Arabia</h6>
+                            <div class="ml-2  mr-4">
+                                <div>
+                                    @include('components.weather', ['weatherData' => $weatherData ?? null])
+                                </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -755,4 +751,34 @@
             </div>
         </div>
     </div>
+    {{-- <h6 class="font-weight-normal">${data.country}</h6> --}}
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let weatherWidget = document.getElementById("weather-widget");
+
+            if (!weatherWidget) {
+                console.error("Error: #weather-widget not found in the DOM.");
+                return;
+            }
+
+            fetch("{{ route('weather.get') }}")
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.temp) {
+                        weatherWidget.innerHTML = `
+                            <h2 class="mt-3 font-weight-normal">${data.temp}°C</h2>
+                            <h2 class="location font-weight-normal">${data.city}</h2>
+                            <h6 class="font-weight-normal">Saudi Arabia</h6>
+                        `;
+                    } else {
+                        weatherWidget.innerHTML = `<h2 class="text-danger">Unable to fetch weather data.</h2>`;
+                    }
+                })
+                .catch(error => {
+                    console.error("Error fetching weather:", error);
+                    weatherWidget.innerHTML = `<h2 class="text-danger">Error fetching weather.</h2>`;
+                });
+        });
+    </script>
+
 @endsection
