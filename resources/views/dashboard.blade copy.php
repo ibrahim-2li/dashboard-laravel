@@ -752,4 +752,33 @@
         </div>
     </div>
     {{-- <h6 class="font-weight-normal">${data.country}</h6> --}}
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let weatherWidget = document.getElementById("weather-widget");
+
+            if (!weatherWidget) {
+                console.error("Error: #weather-widget not found in the DOM.");
+                return;
+            }
+
+            fetch("{{ route('weather.get') }}")
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.temp) {
+                        weatherWidget.innerHTML = `
+                            <h2 class="mt-3 font-weight-normal">${data.temp}°C</h2>
+                            <h2 class="location font-weight-normal">${data.city}</h2>
+                            <h6 class="font-weight-normal">Saudi Arabia</h6>
+                        `;
+                    } else {
+                        weatherWidget.innerHTML = `<h2 class="text-danger">Unable to fetch weather data.</h2>`;
+                    }
+                })
+                .catch(error => {
+                    console.error("Error fetching weather:", error);
+                    weatherWidget.innerHTML = `<h2 class="text-danger">Error fetching weather.</h2>`;
+                });
+        });
+    </script>
+
 @endsection

@@ -9,11 +9,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
+// Route::get('/dashboard2', function () {
+//     return view('dashboard.index');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-// Route::get('/dashboard2')->middleware(['auth', 'verified'])->name('dashboard2');
+// Route::get('/dashboard')->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -22,6 +22,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/weather', [WeatherController::class, 'getWeather'])->name('weather.get');
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+// Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+
 
 require __DIR__.'/auth.php';
